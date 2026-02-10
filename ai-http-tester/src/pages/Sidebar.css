@@ -1,0 +1,33 @@
+/* Sidebar panels */
+.sidebar {
+	gap: 10px;
+}
+
+.sidebar .panel {
+	display: flex;
+	flex-direction: column;
+	gap: 8px;
+}
+
+.sidebar .chip {
+	background: rgba(255,255,255,0.03);
+	border-radius: 8px;
+	padding: 8px 10px;
+	font-size: 13px;
+}
+
+.prompt-row {
+	display:flex;
+	gap:8px;
+	align-items:center;
+}
+
+.prompt-input {
+	flex:1;
+	background: transparent;
+	border: 1px dashed rgba(255,255,255,0.03);
+	color: var(--text);
+	padding: 8px;
+	border-radius: 8px;
+}
+

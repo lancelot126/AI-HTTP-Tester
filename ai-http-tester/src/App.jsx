@@ -10,13 +10,25 @@ import axios from 'axios';
 function App() {
   const [rawRequest, setRawRequest] = useState("");
   const [ response, setResponse ] = useState("");
+  const [ history, setHistory ] = useState([]);
   
+
   return (
     <>
       <Header />
-      <Sidebar />
-      <Editor />
-      <History />
+      <div className="app-container">
+        <div className="sidebar-col">
+          <Sidebar />
+        </div>
+
+        <div className="editor-col">
+          <Editor />
+        </div>
+
+        <div className="history-col">
+          <History />
+        </div>
+      </div>
     </>
   );
 }
