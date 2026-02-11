@@ -10,7 +10,7 @@ function App() {
   const [rawRequest, setRawRequest] = useState("");
   const [response, setResponse] = useState("");
   const [history, setHistory] = useState([]);
-  
+
   return (
     <>
       <Header />
@@ -20,11 +20,15 @@ function App() {
         </div>
 
         <div className="editor-col">
-          <Editor />
+          <Editor rawRequest={rawRequest}
+                  setRawRequest={setRawRequest}
+                  response = {response}
+                  setResponse={setResponse}
+          />
         </div>
 
         <div className="history-col">
-          <History />
+          <History history={history} setHistory = {setHistory} />
         </div>
       </div>
     </>
