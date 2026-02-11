@@ -1,7 +1,7 @@
 const express = require("express");
 const cors = require("cors");
 const axios = require("axios");
-const { GROQ } = require("groq-sdk");
+const Groq = require("groq-sdk");
 require("dotenv").config();
 
 const app = express();
@@ -37,12 +37,12 @@ app.post("/proxy", async (req, res) => {
   }
 });
 
-const groq = new GROQ({
+const groq = new Groq({
   apiKey: process.env.GROQ_API_KEY,
 });
 
 app.post("/generate-payloads", async (req, res) => {
-  const { rawRequest } = req.body;
+  const { rawRequest, instruction } = req.body;
   try {
     const completion = await groq.chat.completions.create({
       messages: [
@@ -55,14 +55,17 @@ app.post("/generate-payloads", async (req, res) => {
           Format: {"vulnerabilities": [{"parameter": "name", "type": "SQLi", "payloads": ["...", "..."]}]}`,
         },
         {
-            role: "user",
-            content: rawRequest
-        }
+          role: "user",
+          content: `
+            REQUEST TO ANALYZE: ${rawRequest}
+            USER PRIORITIES: ${instruction || "Perform a general security scan."}
+          `,
+        },
       ],
       model: "llama-3.3-70b-versatile", // This is their strongest free model
       response_format: {
         type: "json_object",
-      }
+      },
     });
 
     const airesponse = JSON.parse(completion.choices[0].message.content);

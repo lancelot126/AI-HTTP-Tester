@@ -4,7 +4,6 @@ import { Sidebar } from "./pages/Sidebar";
 import { Editor } from "./pages/Editor";
 import { History } from "./pages/History";
 import "./App.css";
-import axios from "axios";
 
 function App() {
   const [rawRequest, setRawRequest] = useState("");
@@ -16,7 +15,10 @@ function App() {
       <Header />
       <div className="app-container">
         <div className="sidebar-col">
-          <Sidebar />
+          <Sidebar 
+            rawRequest={rawRequest}
+            setRawRequest={setRawRequest}
+          />
         </div>
 
         <div className="editor-col">
