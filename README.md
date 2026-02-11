@@ -11,7 +11,9 @@ An automated tool for security interns to turn 2 hours of manual HTTP testing in
 
 🛠️ Architecture
 Frontend: React (State Management & UI)
+
 Backend: Node.js + Express (CORS Proxy)
+
 Intelligence: OpenAI API (Vulnerability Analysis)
 
 🚀 Quick Start
@@ -19,4 +21,5 @@ Intelligence: OpenAI API (Vulnerability Analysis)
 2. Config: Add OPENAI_API_KEY to server/.env.
 3. Run Backend: cd server && node index.js.
 4. Run Frontend: cd client && npm start.
+
 
