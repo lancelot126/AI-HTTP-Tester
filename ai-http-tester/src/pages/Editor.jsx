@@ -45,7 +45,7 @@ export function Editor({ rawRequest, setRawRequest, response, setResponse }) {
       <div className="card editor-block">
         <div className="section-title">📨 RESPONSE</div>
         <div className="mono small">
-          {response}
+          {response} hello
         </div>
         <div className="send-row">
           <button className="btn">Analyze Response</button>
