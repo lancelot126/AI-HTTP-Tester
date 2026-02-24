@@ -1,6 +1,6 @@
 /* Sidebar panels */
 .sidebar {
-	gap: 10px;
+	gap: 12px;
 }
 
 .sidebar .panel {
@@ -16,18 +16,106 @@
 	font-size: 13px;
 }
 
+/* Vulnerability group styling */
+.vulnerability-group {
+	display: flex;
+	flex-direction: column;
+	gap: 8px;
+	padding: 10px;
+	background: rgba(124, 92, 255, 0.05);
+	border: 1px solid rgba(124, 92, 255, 0.15);
+	border-radius: 6px;
+	margin-top: 8px;
+}
+
+.vun-header {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	gap: 8px;
+}
+
+.param-label {
+	font-size: 12px;
+	color: rgba(255,255,255,0.7);
+}
+
+.param-label strong {
+	color: #7c5cff;
+	font-weight: 600;
+}
+
+.vun-type {
+	display: inline-block;
+	background: rgba(124, 92, 255, 0.2);
+	color: #a8a2d8;
+	font-size: 11px;
+	padding: 2px 6px;
+	border-radius: 4px;
+	font-weight: 500;
+}
+
+.payload-grid {
+	display: grid;
+	grid-template-columns: 1fr;
+	gap: 6px;
+}
+
+.payload-pill {
+	background: rgba(124, 92, 255, 0.15);
+	border: 1px solid rgba(124, 92, 255, 0.3);
+	color: rgba(255,255,255,0.85);
+	padding: 6px 10px;
+	border-radius: 6px;
+	font-size: 12px;
+	cursor: pointer;
+	transition: all 0.2s ease;
+	font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, "Roboto Mono", "Courier New", monospace;
+	word-break: break-all;
+}
+
+.payload-pill:hover {
+	background: rgba(124, 92, 255, 0.25);
+	border-color: rgba(124, 92, 255, 0.5);
+	color: #ffffff;
+	box-shadow: 0 0 8px rgba(124, 92, 255, 0.2);
+}
+
+.payload-pill:active {
+	background: rgba(124, 92, 255, 0.35);
+	transform: scale(0.98);
+}
+
 .prompt-row {
-	display:flex;
-	gap:8px;
-	align-items:center;
+	display: flex;
+	gap: 8px;
+	align-items: center;
 }
 
 .prompt-input {
-	flex:1;
-	background: transparent;
-	border: 1px dashed rgba(255,255,255,0.03);
+	flex: 1;
+	background: rgba(255,255,255,0.03);
+	border: 1px solid rgba(255,255,255,0.08);
 	color: var(--text);
-	padding: 8px;
+	padding: 10px 12px;
 	border-radius: 8px;
+	font-size: 13px;
+	transition: all 0.2s ease;
+	font-family: inherit;
+}
+
+.prompt-input::placeholder {
+	color: rgba(255,255,255,0.3);
+}
+
+.prompt-input:focus {
+	outline: none;
+	border-color: rgba(124, 92, 255, 0.4);
+	background: rgba(255,255,255,0.05);
+	box-shadow: 0 0 12px rgba(124, 92, 255, 0.15);
+}
+
+.prompt-input:hover {
+	border-color: rgba(255,255,255,0.12);
 }
 

@@ -66,9 +66,23 @@ hr {
 	background: linear-gradient(90deg, var(--accent), #5b8bff);
 	color: white;
 	border: none;
-	padding: 8px 12px;
+	padding: 10px 16px;
 	border-radius: 8px;
 	cursor: pointer;
+	font-size: 13px;
+	font-weight: 500;
+	transition: all 0.2s ease;
+	box-shadow: 0 2px 8px rgba(124, 92, 255, 0.25);
+}
+
+.btn:hover {
+	transform: translateY(-2px);
+	box-shadow: 0 4px 12px rgba(124, 92, 255, 0.35);
+}
+
+.btn:active {
+	transform: translateY(0);
+	box-shadow: 0 2px 6px rgba(124, 92, 255, 0.2);
 }
 
 .mono {
