@@ -75,6 +75,45 @@ app.post("/generate-payloads", async (req, res) => {
     res.status(500).json({ error: "AI analysis failed." });
   }
 });
+
+app.post("/analyze-responses", async (req, res) => {
+  const { payload, status, responseData } = req.body;
+
+  try {
+    const completion = await groq.chat.completions.create({
+      messages: [
+        {
+          role: "system",
+          content: `You are a Vulnerability Validation AI. 
+          Analyze the HTTP response to determine if the attack payload was successful.
+          Look for:
+          1. System file content (e.g., /etc/passwd contents like 'root:x:0:0').
+          2. Database error strings (e.g., 'SQL syntax error', 'PDOException').
+          3. Information disclosure (e.g., internal IP addresses, stack traces).
+          4. Logic bypass (e.g., a 200 OK status when a 403 Forbidden was expected).
+          
+          Return a JSON object: 
+          {"success": true/false, "explanation": "Briefly why", "finding": "The specific data leaked or error found"}`
+        },
+        {
+          role: "user",
+          content: `Payload Sent: ${payload}
+                    Response Status: ${status}
+                    Response Body: ${JSON.stringify(responseData).substring(0, 2000)}` 
+        }
+      ],
+      model: "llama-3.3-70b-versatile",
+      response_format: {
+        type: "json_object",
+      }
+    });
+
+    res.json(JSON.parse(completion.choices[0].message.content));
+  } catch (err) {
+    res.status(500).json({ error: "AI Analysis failed." });
+  }
+})
+
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 });
