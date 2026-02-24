@@ -2,6 +2,9 @@ import "./Editor.css";
 import { parseRawHTTP } from "../utils/parseRawHTTP";
 
 export function Editor({ rawRequest, setRawRequest, response, setResponse }) {
+  const [analysis, setAnalysis] = useState(null);
+  const [loadingAnalysis, setLoadingAnalysis] = useState(false);
+
   const handleSendRequest = async () => {
     const parsedRequest = parseRawHTTP(rawRequest);
     if (!parsedRequest) {
@@ -24,6 +27,28 @@ export function Editor({ rawRequest, setRawRequest, response, setResponse }) {
       console.error("Request to Node server failed", err);
     }
   };
+
+  const analyzeResponse = async () => {
+    setLoadingAnalysis(true);
+    try {
+      const res = await fetch("http://localhost:5000/generate-payloads", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          payload: "The payload you clicked",
+          status: response.status,
+          responseData: response.data
+        })
+      });
+      const data = await res.json();
+      setAnalysis(data);
+    } catch (err) {
+      console.error("Analysis failed", err);
+    } finally {
+    setLoadingAnalysis(false);
+    }
+  };
+
   return (
     <>
       <div className="card editor-block">
