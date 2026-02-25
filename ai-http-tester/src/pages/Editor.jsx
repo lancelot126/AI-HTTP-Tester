@@ -70,10 +70,18 @@ export function Editor({ rawRequest, setRawRequest, response, setResponse }) {
       <div className="card editor-block">
         <div className="section-title">📨 RESPONSE</div>
         <div className="mono small">
-          {response} hello
+          {analysis && (
+            <div className={`verdict-box ${analysis.success ? 'vulnerable' : 'secure'}`}>
+              <h4>Verdict: {analysis.success ? "🚨 VULNERABLE" : "✅ SECURE"}</h4>
+              <p><strong>Reason:</strong> {analysis.explanation}</p>
+              {analysis.finding && <p><strong>Found:</strong> <code>{analysis.finding}</code></p>}
+            </div>
+          )}
         </div>
         <div className="send-row">
-          <button className="btn">Analyze Response</button>
+          <button className="btn" onClick={analyzeResponse}>
+            {loadingAnalysis ? "Analyzing..." : "🔍 Analyze Response"}
+          </button>
         </div>
       </div>
     </>
