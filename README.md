@@ -15,13 +15,14 @@ Frontend: React (State Management & UI)
 
 Backend: Node.js + Express (CORS Proxy)
 
-Intelligence: OpenAI API (Vulnerability Analysis)
+Intelligence: Groq API (Vulnerability Analysis)
 
 🚀 Quick Start
 1. Install: npm install in both /client and /server.
 2. Config: Add OPENAI_API_KEY to server/.env.
 3. Run Backend: cd server && node index.js.
-4. Run Frontend: cd client && npm start.
+4. Run Frontend: cd AI-HTTP-TESTER && npm run dev.
+
 
 
 
